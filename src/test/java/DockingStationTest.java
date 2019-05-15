@@ -44,13 +44,21 @@ class DockingStationTest {
         assertEquals(0, dockingStation.dockedBikes.size());
     }
 
-    @DisplayName("default capacity is 5 bikes")
+    @DisplayName("default capacity is 20 bikes")
+    @Test
+    void setCapacity() {
+        DockingStation dockingStation = new DockingStation();
+        dockingStation.setCapacity(7);
+        assertEquals(7, dockingStation.getCapacity());
+    }
+
+
+    @DisplayName("default capacity can be changed")
     @Test
     void getCapacity() {
         DockingStation dockingStation = new DockingStation();
         assertEquals(20, dockingStation.getCapacity());
     }
-
 
     @DisplayName("cannot dock bike if docking station at capacity")
     @Test

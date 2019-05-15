@@ -17,6 +17,10 @@ public class DockingStation {
         return capacity;
     }
 
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     public void dockBike (Bike bike) throws CapacityFullException {
         if (dockedBikes.size() < capacity) {
             dockedBikes.add(bike);
