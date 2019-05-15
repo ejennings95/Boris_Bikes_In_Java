@@ -6,4 +6,12 @@ public class Bike {
         return condition;
     }
 
+    private void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public void isBroken() {
+        this.setCondition("broken");
+    }
+
 }

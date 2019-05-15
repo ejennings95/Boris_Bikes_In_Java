@@ -14,4 +14,12 @@ class BikeTest {
         assertEquals("working", bike.getCondition());
     }
 
+    @DisplayName("bike condition can be set as broken")
+    @Test
+    void conditionBroken() {
+        Bike bike = new Bike();
+        bike.isBroken();
+        assertEquals("broken", bike.getCondition());
+    }
+
 }
