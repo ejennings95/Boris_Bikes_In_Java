@@ -5,14 +5,20 @@ public class DockingStation {
 
     ArrayList<Bike> dockedBikes = new ArrayList<Bike>();
 
-    int capacity = 5;
+    int capacity = 20;
+
+    public DockingStation() {}
+
+    public DockingStation(int capacity) {
+        this.capacity = capacity;
+    }
 
     public int getCapacity() {
         return capacity;
     }
 
     public void dockBike (Bike bike) throws CapacityFullException {
-        if (dockedBikes.size() < 5) {
+        if (dockedBikes.size() < capacity) {
             dockedBikes.add(bike);
         } else {
             throw new CapacityFullException("Docking station capacity full.");

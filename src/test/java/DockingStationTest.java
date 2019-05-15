@@ -48,14 +48,14 @@ class DockingStationTest {
     @Test
     void getCapacity() {
         DockingStation dockingStation = new DockingStation();
-        assertEquals(5, dockingStation.getCapacity());
+        assertEquals(20, dockingStation.getCapacity());
     }
 
 
     @DisplayName("cannot dock bike if docking station at capacity")
     @Test
     void dockBikeFullCapacity() throws CapacityFullException {
-        DockingStation dockingStation = new DockingStation();
+        DockingStation dockingStation = new DockingStation(3);
         Bike bike = Mockito.spy(Bike.class);
         Bike bike1 = Mockito.spy(Bike.class);
         Bike bike2 = Mockito.spy(Bike.class);
@@ -65,10 +65,8 @@ class DockingStationTest {
         dockingStation.dockBike(bike);
         dockingStation.dockBike(bike1);
         dockingStation.dockBike(bike2);
-        dockingStation.dockBike(bike3);
-        dockingStation.dockBike(bike4);
         Assertions.assertThrows(CapacityFullException.class, () -> {
-            dockingStation.dockBike(bike5);
+            dockingStation.dockBike(bike3);
         });
     }
 
