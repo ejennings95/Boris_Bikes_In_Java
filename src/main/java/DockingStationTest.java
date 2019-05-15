@@ -1,12 +1,18 @@
+import org.junit.Rule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
+
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DockingStationTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @DisplayName("should start with dockedbikes equating to an empty array")
     @Test
@@ -18,7 +24,7 @@ class DockingStationTest {
 
     @DisplayName("should be possible to dock a bike")
     @Test
-    void dockBike() {
+    void dockBike() throws CapacityFullException {
         DockingStation dockingStation = new DockingStation();
         Object bike = Mockito.spy(Bike.class);
         dockingStation.dockBike(bike);
@@ -28,7 +34,7 @@ class DockingStationTest {
 
     @DisplayName("should be possible to release a bike")
     @Test
-    void releaseBike() {
+    void releaseBike() throws CapacityFullException {
         DockingStation dockingStation = new DockingStation();
         Object bike = Mockito.spy(Bike.class);
         dockingStation.dockBike(bike);
@@ -36,11 +42,30 @@ class DockingStationTest {
         assertEquals(0, dockingStation.dockedBikes.size());
     }
 
-
     @DisplayName("default capacity is 5 bikes")
     @Test
     void getCapacity() {
         DockingStation dockingStation = new DockingStation();
+        assertEquals(5, dockingStation.getCapacity());
+    }
+
+
+    @DisplayName("cannot dock bike if docking station at capacity")
+    @Test
+    void dockBikeFullCapacity() throws CapacityFullException {
+        DockingStation dockingStation = new DockingStation();
+        Object bike = Mockito.spy(Bike.class);
+        Object bike1 = Mockito.spy(Bike.class);
+        Object bike2 = Mockito.spy(Bike.class);
+        Object bike3 = Mockito.spy(Bike.class);
+        Object bike4 = Mockito.spy(Bike.class);
+        Object bike5 = Mockito.spy(Bike.class);
+        dockingStation.dockBike(bike);
+        dockingStation.dockBike(bike1);
+        dockingStation.dockBike(bike2);
+        dockingStation.dockBike(bike3);
+        dockingStation.dockBike(bike4);
+        dockingStation.dockBike(bike5);
         assertEquals(5, dockingStation.getCapacity());
     }
 }

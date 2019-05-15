@@ -10,8 +10,13 @@ public class DockingStation {
         return capacity;
     }
 
-    public void dockBike (Object bike) {
-        dockedBikes.add(bike);
+    public void dockBike (Object bike) throws CapacityFullException {
+        if (dockedBikes.size() <= 5) {
+            dockedBikes.add(bike);
+        } else {
+            System.out.println("here");
+            throw new CapacityFullException("Docking station capacity full.");
+        }
     }
 
     public void releaseBike () {
