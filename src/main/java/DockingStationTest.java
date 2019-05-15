@@ -25,4 +25,15 @@ class DockingStationTest {
         assertEquals(bike, dockingStation.dockedBikes.get(0));
     }
 
+
+    @DisplayName("should be possible to release a bike")
+    @Test
+    void releaseBike() {
+        DockingStation dockingStation = new DockingStation();
+        Object bike = Mockito.spy(Bike.class);
+        dockingStation.dockBike(bike);
+        dockingStation.releaseBike();
+        assertEquals(0, dockingStation.dockedBikes.size());
+    }
+
 }

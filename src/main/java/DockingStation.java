@@ -7,4 +7,8 @@ public class DockingStation {
     public void dockBike (Object bike) {
         dockedBikes.add(bike);
     }
+
+    public void releaseBike () {
+        dockedBikes.remove(dockedBikes.size() - 1);
+    }
 }
