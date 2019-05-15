@@ -14,4 +14,7 @@ public class Bike {
         this.setCondition("broken");
     }
 
+    public void isWorking() {
+        this.setCondition("working");
+    }
 }
