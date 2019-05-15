@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DockingStation {
 
@@ -19,6 +20,9 @@ public class DockingStation {
     }
 
     public void releaseBike () throws DockingStationEmptyException, BikeIsBrokenException {
+        System.out.println(dockedBikes);
+        Collections.shuffle(dockedBikes);
+        System.out.println(dockedBikes);
         if (dockedBikes.size() == 0) {
             throw new DockingStationEmptyException("Docking station is empty.");
 
