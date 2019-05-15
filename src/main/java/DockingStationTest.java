@@ -36,4 +36,11 @@ class DockingStationTest {
         assertEquals(0, dockingStation.dockedBikes.size());
     }
 
+
+    @DisplayName("default capacity is 5 bikes")
+    @Test
+    void getCapacity() {
+        DockingStation dockingStation = new DockingStation();
+        assertEquals(5, dockingStation.getCapacity());
+    }
 }
