@@ -1,4 +1,5 @@
 import org.junit.Rule;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
@@ -34,7 +35,7 @@ class DockingStationTest {
 
     @DisplayName("should be possible to release a bike")
     @Test
-    void releaseBike() throws CapacityFullException {
+    void releaseBike() throws CapacityFullException, DockingStationEmptyException {
         DockingStation dockingStation = new DockingStation();
         Object bike = Mockito.spy(Bike.class);
         dockingStation.dockBike(bike);
@@ -65,7 +66,18 @@ class DockingStationTest {
         dockingStation.dockBike(bike2);
         dockingStation.dockBike(bike3);
         dockingStation.dockBike(bike4);
-        dockingStation.dockBike(bike5);
-        assertEquals(5, dockingStation.getCapacity());
+        Assertions.assertThrows(CapacityFullException.class, () -> {
+            dockingStation.dockBike(bike5);
+        });
     }
+
+    @DisplayName("default capacity is 5 bikes")
+    @Test
+    void unableToReleaseBike() throws DockingStationEmptyException {
+        DockingStation dockingStation = new DockingStation();
+        Assertions.assertThrows(DockingStationEmptyException.class, () -> {
+            dockingStation.releaseBike();
+        });
+    }
+
 }
